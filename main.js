@@ -1,3 +1,6 @@
+
+
+var test0=function(){
 var str="abc";
 (function(){
  	str="sdf3";
@@ -80,8 +83,8 @@ wukong.sayILoveYou();
 superMan.sayILoveYou();
 
 console.log(Math.PI);
-
-window.onload=function(){
+}
+var test1=function(){
 	var main= document.getElementById('main');
 	console.log(main);
 	var pTag= document.getElementsByTagName('p');
@@ -97,5 +100,60 @@ window.onload=function(){
 	console.log('***Body*********');
 	console.log(body);
 	console.log('***Element only*********************************');
+	console.log(main.firstElementChild);
+	console.log(main.lastElementChild);
+	console.log(main.children);
+	console.log('***BodyElement*********');
+	var bodyFirst=main.firstChild;
+	console.log('***bodyFirst****');	
+	console.log(bodyFirst);	
+	var bodyNext=bodyFirst.nextSibling;	
+	console.log('***bodyNext****');	
+	console.log(bodyNext);
+	var nextnextSibling=bodyNext.nextSibling;
+	console.log('***nextnextSibling****');	
+	console.log(nextnextSibling);
+	var nextnext=bodyNext.nextElementSibling;
+	console.log('***nextnextElement****');	
+	console.log(nextnext);
+	console.log('***nextnextnextSibling****');	
+	console.log(nextnext.nextSibling);
+};
 
+
+window.onload=function(){
+var target=document.getElementById('main').firstElementChild;
+console.log(target.innerText);
+target.innerText="Now You're getting further";
+console.log('***After Change*******');
+console.log(target.innerText);
+target.parentNode.removeChild(target);
+
+console.log('***Add Element*******');
+var main=document.getElementById('main');
+var newElement= document.createElement('p');
+newElement.innerText='Hi, New Element Here.';
+main.appendChild(newElement);
+console.log(main);
+console.log('***Add Element**Before any element******');
+var firstPElement= document.getElementsByTagName('p');
+var newPElement= document.createElement('p');
+newPElement.innerText='Hi, New P element here, nice to meet you! ';
+main.insertBefore(newPElement,firstPElement[0]);
+
+console.log('***Selector Test1**ONLY P in Class****');
+var selectTargets1= document.querySelectorAll('p.hoge');
+for (var i = 0; i < selectTargets1.length; i++) {
+	selectTargets1[i].style.color='red';
+	}
+
+console.log('***Selector Test2***ALL in class***');
+var selectTargets2= document.querySelectorAll('.hoge');
+for (var i = 0; i < selectTargets2.length; i++) {
+	selectTargets2[i].style.color='yellow';
+	}
+
+console.log('***Selector Test3**First one ONLY****');
+var selectTargets3= document.querySelector('.hoge');
+selectTargets3.style.color='blue';
 }
