@@ -20,7 +20,7 @@ var test0=function(){
 	function sayhello(str){
 		var name=str||"Rida"; // default value
 		console.log('Hello, '+name);
-	};
+	}
 
 	console.log('*******************************');
 	var objTest={
@@ -32,7 +32,7 @@ var test0=function(){
 			console.log('Hello, '+ this.obj1);
 			console.log(this);
 		},
-	}
+	};
 
 	objTest.sayhello();
 
@@ -40,7 +40,7 @@ var test0=function(){
 		this.name=name;
 		this.sayHello=function(){
 			console.log('Hello, '+this.name);
-		}
+		};
 	};
 
 	var sherman= new Person('Sherman');
@@ -82,8 +82,16 @@ var test0=function(){
 	wukong.sayILoveYou();
 	superMan.sayILoveYou();
 
-	console.log(Math.PI);
-}
+
+	// Understand of the use of "isPrototypeOf".
+	console.log("Person.prototype.isPrototypeOf(wukong)):"+Person.prototype.isPrototypeOf(wukong)); //true
+	console.log("SaiyaPerson.prototype.isPrototypeOf(wukong)):"+SaiyaPerson.prototype.isPrototypeOf(wukong)); //true
+	console.log("Person.prototype.isPrototypeOf(SuperPerson)):"+Person.prototype.isPrototypeOf(SuperPerson)); //false
+	console.log("Person.prototype.isPrototypeOf(SuperPerson.prototype)):"+Person.prototype.isPrototypeOf(SuperPerson.prototype)); //true
+	console.log("SuperPerson.prototype.isPrototypeOf(superMan)):"+SuperPerson.prototype.isPrototypeOf(superMan)); //true
+	
+	//console.log(Math.PI);
+};
 
 var test1=function(){
 	var main= document.getElementById('main');
@@ -156,9 +164,11 @@ var test2=function(){
 	console.log('***Selector Test3**First one ONLY****');
 	var selectTargets3= document.querySelector('.hoge');
 	selectTargets3.style.color='blue';
-}
+};
 window.onload= function(){
-	test2();
+	console.log(test0());
+
+	//test2();
 
 	var main =document.getElementById('main');
 	main.addEventListener('click',function(){

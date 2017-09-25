@@ -2,10 +2,11 @@ window.onload=function(){
 	var test1Function=function(){
 		var body=document.getElementsByTagName('body')[0];
 		var boxes=document.getElementsByClassName('box');
+
+		/*
 		var valuetest=0xfffffff1;
 		var storage=localStorage;
 		var bg=storage.getItem('background');
-
 		// use localStorage
 		//if(bg)body.style.backgroundColor = bg;
 		for (var i = 0; i < boxes.length; i++) {
@@ -13,14 +14,43 @@ window.onload=function(){
 				body.style.backgroundColor=this.id;
 				storage.setItem('background',this.id);
 				var elementtest=document.getElementById(this.id);
-				if(this.id=="green"){elementtest.innerText=typeof valuetest;}
-			else {elementtest.innerText=valuetest; /** answer is 64 ,not 100**/}
-		});
+				if(this.id=="green")elementtest.innerText=typeof valuetest;
+				else elementtest.innerText=valuetest; // answer is 64 ,not 100
+			});
 		}
+		*/
+
+		for(var i=0;i<boxes.length;i++){
+			boxes[i].addEventListener('click', function(){
+				var elementtest=document.getElementById(this.id);
+				var box=document.querySelector('div');
+				while(box){
+					if(box!=elementtest)box.innerText="";
+					box=box.nextElementSibling;
+				}
+				body.style.backgroundColor = this.id;
+
+				//???? ↓ while intervalTime elementtest will change to all div element with a wired order like: "red,green,blue,red,gren,blue,red" and then repeat.  
+				var intervalTimer=window.setInterval(
+					function(){
+						var timeNow= new Date();
+						elementtest.innerText=timeNow.toLocaleTimeString(); 
+						// If "elementtest" is replaced by "this" or "boxes[i]", then the result will be "window",not the div element we want.
+					}
+					,1000);
+			});
+		}
+	};
+	
+	test1Function();
+	
+	var learnFunction=function(){
+		//learn yield
 		var array_1=new Array();
 		array_1.foo="sa/dfs";
 		array_1.bar="de/dfs";
 		array_1.hoge="asd/dfs";
+		
 		// use yield
 		function* func(){
 			console.log(array_1.foo);
@@ -59,7 +89,6 @@ window.onload=function(){
 		console.log(boy.sayHello());
 	};
 	
-	//test1Function();
 
 	// global veriaties test.
 	var test2Function = function(){
@@ -145,6 +174,7 @@ window.onload=function(){
 
 	// globalFunctionTest(); // undefined, local b,local a
 
+	//immediate Function Test
 	var immediateFunctionTest = function(){
 		var a ="global a";
 		(function testImmediate(){
@@ -162,6 +192,7 @@ window.onload=function(){
 		})();
 	};
 
-	immediateFunctionTest();
+	//immediateFunctionTest();
+	//
 
 };
